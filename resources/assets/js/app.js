@@ -9,7 +9,7 @@ import store from './vuex/store';
     Componentes Globais
     Vue.component('example-component', require('./components/ExampleComponent.vue'));
 */
-Vue.component('test-component', require('./components/TestComponent.vue'));
+Vue.component('app-component', require('./components/App.vue'));
 
 const app = new Vue({
     router,
