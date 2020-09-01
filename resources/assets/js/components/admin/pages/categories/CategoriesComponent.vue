@@ -1,11 +1,34 @@
 <template>
     <div>
-        Listagem das Categorias
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th width="100">Acões</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(category,index) in categories.data" :key="index">
+                    <td v-text="category.id"></td>
+                    <td v-text="category.name"></td>
+                    <td>...</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script>
 export default {
+    created(){
+        this.$store.dispatch('loadCategories');
+    },
+    computed: {
+        categories(){
+            return  this.$store.state.categories.items;;
+        }
+    },
     
 }
 </script>

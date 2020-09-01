@@ -13,8 +13,8 @@ $this->get('me', 'Auth\AuthApiController@getAuthenticatedUser');
 
 $this->group([
     'prefix' => 'v1',
-    'namespace' => 'Api\v1',
-    'middleware' => 'auth:api'
+    'namespace' => 'Api\v1'
+    // 'middleware' => 'auth:api'
 ], function () {
 
     $this->get('categories/{id}/products', 'CategoryController@products');

@@ -68,7 +68,7 @@
         <div id="app">
      
             
-              <admin-component></admin-component>          
+            <router-view></router-view>
             
         </div>
         <script src="{{url('js/app.js')}}"></script>
