@@ -65,24 +65,11 @@
         </style>
     </head>
     <body>
-        <div id="app" class="flex-center position-ref full-height" >
+        <div id="app">
      
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content" >
-              <app-component></app-component>
-
-               
-            </div>
+            
+              <admin-component></admin-component>          
+            
         </div>
         <script src="{{url('js/app.js')}}"></script>
     </body>

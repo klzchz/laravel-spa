@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-view></router-view>
+        home page do Dashboard
     </div>
 </template>
 <script>
@@ -8,7 +8,6 @@ export default {
     
 }
 </script>
-
 <style  scoped>
 
 </style>
