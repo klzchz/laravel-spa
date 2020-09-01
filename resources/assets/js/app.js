@@ -10,6 +10,7 @@ import store from './vuex/store';
     Vue.component('example-component', require('./components/ExampleComponent.vue'));
 */
 Vue.component('admin-component', require('./components/admin/AdminComponent.vue'));
+Vue.component('preloader-component', require('./components/layouts/PreloaderComponent.vue'));
 
 const app = new Vue({
     router,
