@@ -7,7 +7,7 @@ export default {
     mutations:{
         PRELOADER(state,status)
         {
-            state.preloader = state;
+            state.preloader.loading = status;
         }
     },
 }

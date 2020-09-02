@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>Listagem de Categorias</h1>
         <table class="table table-dark">
             <thead>
                 <tr>

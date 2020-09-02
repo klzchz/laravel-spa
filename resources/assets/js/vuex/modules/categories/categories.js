@@ -12,16 +12,21 @@ export default {
     },
     actions:{
         loadCategories(context)
-        {
+        {   
+            context.commit('PRELOADER',true)
             axios.get(`/api/v1/categories`)
             .then(response=>{
                 // this.categories = response;
                 console.log(response);
                 context.commit('LOAD_CATEGORIES',response);
+                
+
             })
             .catch(errors =>{
                 console.log(errors);
             })
+            .finally(()=>   context.commit('PRELOADER',false))
+            
         }
     },
     getters:{
