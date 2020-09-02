@@ -2,20 +2,31 @@
     <div>
         <h2>Cadastrando Categoria</h2>
         <small><router-link :to="{name:'admin.categories'}">Voltar</router-link></small>
-        <form action="">
+        <form class="form" @submit.prevent="submitForm()">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Nome da Categoria">
+                <input type="text" v-model="name" class="form-control" placeholder="Nome da Categoria">
             </div>
             
             <div class="form-group">
-                <button class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
         </form>
     </div>
 </template>
 <script>
 export default {
-    
+    data() {
+        return {
+            name:'',
+        }
+    },
+    methods: {
+        submitForm(){
+            this.$store.dispatch('storeCategory',{name: this.name})
+                        .then(()=> this.$router.push({name:'admin.categories'}))
+                        .cath()
+        }
+    },
 }
 </script>
 <style scoped>
