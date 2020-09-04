@@ -24,7 +24,7 @@ export default {
         submitForm(){
             this.$store.dispatch('storeCategory',{name: this.name})
                         .then(()=> this.$router.push({name:'admin.categories'}))
-                        .cath()
+                        .catch()
         }
     },
 }

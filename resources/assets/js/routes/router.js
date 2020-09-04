@@ -5,6 +5,8 @@ import Vue from 'vue'
  import DashboardComponent from '../components/admin/pages/dashboard/DashboardComponent'
  import AdminComponent from '../components/admin/AdminComponent'
  import AddCategoryComponent from '../components/admin/pages/categories/AddCategoryComponent'
+ import EditCategoryComponent from '../components/admin/pages/categories/EditCategoryComponent'
+ 
  Vue.use(VueRouter)
 
  const routes = [
@@ -29,6 +31,12 @@ import Vue from 'vue'
             component:AddCategoryComponent,
             name:'admin.categories.create'
          },
+         {
+          path:'categories/:id/edit'  ,
+          component:EditCategoryComponent,
+          name:'admin.categories.edit',
+          props:true
+         }
       ]
    },
 
