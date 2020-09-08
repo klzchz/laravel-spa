@@ -1,19 +1,15 @@
 <template>
     <div>
         <h1>Editar Categoria</h1>
-         <small><router-link :to="{name:'admin.categories'}">Voltar</router-link></small>
-           <form class="form" @submit.prevent="submitForm()">
-            <div class="form-group">
-                <input type="text" v-model="category.name" class="form-control" placeholder="Nome da Categoria">
-            </div>
-            
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </div>
-        </form>
+        <form-cat 
+            :category="category"
+            :updating="true">
+        </form-cat>
     </div>
 </template>
 <script>
+
+import FormCategoryComponent from './partials/FormCateogoryComponent'
 export default {
     props:{
         id:{
@@ -31,13 +27,15 @@ export default {
 
                 });
     },
-    data() {
-        return {
-            category:{
-
-            }
+    data()
+    {
+        return{
+            category:{}
         }
     },
+    components:{
+        formCat:FormCategoryComponent
+    }
 }
 </script>
 <style scoped>

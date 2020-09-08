@@ -1,32 +1,16 @@
 <template>
     <div>
         <h2>Cadastrando Categoria</h2>
-        <small><router-link :to="{name:'admin.categories'}">Voltar</router-link></small>
-        <form class="form" @submit.prevent="submitForm()">
-            <div class="form-group">
-                <input type="text" v-model="name" class="form-control" placeholder="Nome da Categoria">
-            </div>
-            
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </div>
-        </form>
+        <form-cat></form-cat>
     </div>
 </template>
 <script>
+import FormCategoryComponent from './partials/FormCateogoryComponent';
 export default {
-    data() {
-        return {
-            name:'',
-        }
-    },
-    methods: {
-        submitForm(){
-            this.$store.dispatch('storeCategory',{name: this.name})
-                        .then(()=> this.$router.push({name:'admin.categories'}))
-                        .catch()
-        }
-    },
+
+    components:{
+       formCat: FormCategoryComponent
+    }
 }
 </script>
 <style scoped>
