@@ -37938,6 +37938,18 @@ var index = {
                     return context.commit('PRELOADER', false);
                 });
             });
+        },
+        updateCategory: function updateCategory(context, params) {
+            context.commit('PRELOADER', true);
+            return new Promise(function (resolve, reject) {
+                axios.put('api/v1/categories/' + params.id, params).then(function (response) {
+                    return resolve();
+                }).catch(function (error) {
+                    return reject(error);
+                }).finally(function () {
+                    return context.commit('PRELOADER', false);
+                });
+            });
         }
     },
     getters: {}
