@@ -2,9 +2,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Snotify from 'vue-snotify';
 import router from './routes/router';
 import store from './vuex/store';
 
+Vue.use(Snotify,{toast:{showProgressBar:false}})
 /*
     Componentes Globais
     Vue.component('example-component', require('./components/ExampleComponent.vue'));
