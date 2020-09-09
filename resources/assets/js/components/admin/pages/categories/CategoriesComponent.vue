@@ -1,8 +1,14 @@
 <template>
     <div>
         <h1>Listagem de Categorias</h1>
-        
-        <router-link class="btn btn-success" :to="{name: 'admin.categories.create'}">Cadastrar</router-link>
+        <div class="row my-2 mb-2">
+            <div class="col-8">
+                <router-link class="btn btn-success" :to="{name: 'admin.categories.create'}">Cadastrar</router-link>
+            </div>
+            <div class="col-4">
+                <search-component @searchCategory="search"></search-component>
+            </div>
+        </div>
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -26,9 +32,16 @@
 </template>
 
 <script>
+import SearchComponent from './partials/SearchComponent'
 export default {
     created(){
         this.loadCategories();
+    },
+    data()
+    {
+        return {
+            name:'',
+        }
     },
     computed: {
         categories(){
@@ -38,7 +51,7 @@ export default {
     methods: {
         loadCategories()
         {
-            return this.$store.dispatch('loadCategories');
+             this.$store.dispatch('loadCategories',{name:this.name});
         },
         deleteCategory(category)
         {
@@ -72,8 +85,16 @@ export default {
                         },
                     ]
             });
+        },
+        search(filter)
+        {
+            this.name = filter;
+            this.loadCategories();
         }
     },
+    components:{
+        SearchComponent
+    }
     
 }
 </script>
