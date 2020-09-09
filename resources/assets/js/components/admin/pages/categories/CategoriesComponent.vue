@@ -17,7 +17,7 @@
                     <td v-text="category.name"></td>
                     <td>
                         <router-link  class="btn btn-info" :to="{name:'admin.categories.edit',params:{id:category.id}}">Editar</router-link>
-                        <button  class="btn btn-danger" @click.prevent="deleteCategory(category)" >Apagar</button>
+                        <button  class="btn btn-danger" @click.prevent="confirmDeleteCategory(category)" >Apagar</button>
                     </td>
                 </tr>
             </tbody>
@@ -54,6 +54,24 @@ export default {
                         this.$snotify.error("Erro ao deletar a categoria ",'Falha');
                     })
             
+        },
+        confirmDeleteCategory(category)
+        {
+            this.$snotify.error(`Deseja realmente deletar a categoria: ${category.name} ?`,'Deletar?',{
+                  timeout: 5000,
+                  showProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                    buttons:[
+                        {text:'Não',action: (value) => {this.$snotify.remove(value.id)}},
+                        {
+                            text:'Sim',action: (value) => {
+                            this.deleteCategory(category) 
+                        this.$snotify.remove(value.id)
+                        }
+                        },
+                    ]
+            });
         }
     },
     

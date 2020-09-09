@@ -37193,6 +37193,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
                 _this.$snotify.error("Erro ao deletar a categoria ", 'Falha');
             });
+        },
+        confirmDeleteCategory: function confirmDeleteCategory(category) {
+            var _this2 = this;
+
+            this.$snotify.error('Deseja realmente deletar a categoria: ' + category.name + ' ?', 'Deletar?', {
+                timeout: 5000,
+                showProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                buttons: [{ text: 'Não', action: function action(value) {
+                        _this2.$snotify.remove(value.id);
+                    } }, {
+                    text: 'Sim', action: function action(value) {
+                        _this2.deleteCategory(category);
+                        _this2.$snotify.remove(value.id);
+                    }
+                }]
+            });
         }
     }
 
@@ -37255,7 +37273,7 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          return _vm.deleteCategory(category)
+                          return _vm.confirmDeleteCategory(category)
                         }
                       }
                     },
