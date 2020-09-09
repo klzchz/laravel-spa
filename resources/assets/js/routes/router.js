@@ -6,6 +6,7 @@ import Vue from 'vue'
  import AdminComponent from '../components/admin/AdminComponent'
  import AddCategoryComponent from '../components/admin/pages/categories/AddCategoryComponent'
  import EditCategoryComponent from '../components/admin/pages/categories/EditCategoryComponent'
+ import ProductComponent from '../components/admin/pages/products/ProductComponent'
  
  Vue.use(VueRouter)
 
@@ -36,6 +37,11 @@ import Vue from 'vue'
           component:EditCategoryComponent,
           name:'admin.categories.edit',
           props:true
+         },
+         {
+            path:'products',
+            component:ProductComponent,
+            name:'admin.products',
          }
       ]
    },

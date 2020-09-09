@@ -7,6 +7,9 @@
             <li class="nav-item">
                 <router-link class="nav-link" :to="{name:'admin.categories'}">Categories <span class="badge badge-info">({{totalCategories}})</span></router-link>
             </li>
+            <li class="nav-item">
+                <router-link class="nav-link" :to="{name:'admin.products'}">Produtos</router-link>
+            </li>
         </ul>
         <div class="container">
             <router-view></router-view>
