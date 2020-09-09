@@ -63,6 +63,17 @@ export default {
                  .finally(()=>context.commit('PRELOADER',false));
              });
  
+        },
+        deleteCategory(context,params)
+        {
+            console.log(params);
+            context.commit('PRELOADER',true);
+            return new Promise((resolve,reject)=>{
+                axios.delete(`api/v1/categories/${params.id}`)
+                .then((response)=>resolve(response))
+                .catch((error)=>reject(error))
+                // .finally(()=> context.commit('PRELOADER',false));
+            })
         }
     },
     getters:{

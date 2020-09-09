@@ -38,6 +38,7 @@ export default {
         onSubmit()
         {   
             const  action  = this.updating ? 'updateCategory' : 'storeCategory';
+            
              this.$store.dispatch(action,this.category)
                         .then(()=> {
                             this.$snotify.success('Sucesso ao Cadastrar');

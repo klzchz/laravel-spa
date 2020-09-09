@@ -37166,15 +37166,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
-        this.$store.dispatch('loadCategories');
+        this.loadCategories();
     },
 
     computed: {
         categories: function categories() {
             return this.$store.state.categories.items;;
+        }
+    },
+    methods: {
+        loadCategories: function loadCategories() {
+            return this.$store.dispatch('loadCategories');
+        },
+        deleteCategory: function deleteCategory(category) {
+            var _this = this;
+
+            this.$store.dispatch('deleteCategory', category).then(function (response) {
+                _this.loadCategories();
+                console.log(response);
+                _this.$snotify.success('Sucesso ao deletar a categoria:  ' + category.name);
+            }).catch(function (error) {
+                console.log(error);
+                _this.$snotify.error("Erro ao deletar a categoria ", 'Falha');
+            });
         }
     }
 
@@ -37228,6 +37246,20 @@ var render = function() {
                       }
                     },
                     [_vm._v("Editar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteCategory(category)
+                        }
+                      }
+                    },
+                    [_vm._v("Apagar")]
                   )
                 ],
                 1
@@ -37252,7 +37284,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Nome")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "100" } }, [_vm._v("Acões")])
+        _c("th", { attrs: { width: "200" } }, [_vm._v("Acões")])
       ])
     ])
   }
@@ -37756,6 +37788,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             var action = this.updating ? 'updateCategory' : 'storeCategory';
+
             this.$store.dispatch(action, this.category).then(function () {
                 _this.$snotify.success('Sucesso ao Cadastrar');
                 _this.$router.push({ name: 'admin.categories' });
@@ -39413,6 +39446,18 @@ var index = {
                 }).finally(function () {
                     return context.commit('PRELOADER', false);
                 });
+            });
+        },
+        deleteCategory: function deleteCategory(context, params) {
+            console.log(params);
+            context.commit('PRELOADER', true);
+            return new Promise(function (resolve, reject) {
+                axios.delete('api/v1/categories/' + params.id).then(function (response) {
+                    return resolve(response);
+                }).catch(function (error) {
+                    return reject(error);
+                });
+                // .finally(()=> context.commit('PRELOADER',false));
             });
         }
     },
