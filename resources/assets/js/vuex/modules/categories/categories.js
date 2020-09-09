@@ -32,6 +32,7 @@ export default {
         },
         loadCategory(context,id)
         {   
+          
             context.commit('PRELOADER',true)
             return new Promise((resolve,reject) => {
                     axios.get(`api/v1/categories/${id}`)

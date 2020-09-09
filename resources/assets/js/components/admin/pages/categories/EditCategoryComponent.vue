@@ -18,14 +18,9 @@ export default {
         
     },
     created() {
-         this.$store.dispatch('loadCategory',this.id)
-                .then(response => {
-                    console.log(response);
-                    this.category = response;
-                })
-                .catch(error =>{
-
-                });
+        this.loadCategory();
+        
+         
     },
     data()
     {
@@ -35,6 +30,23 @@ export default {
     },
     components:{
         formCat:FormCategoryComponent
+    },
+    methods:{
+        loadCategory()
+        {
+            this.$store.dispatch('loadCategory',this.id)
+                .then(response => {
+                    console.log(response);
+                    this.category = response;
+                })
+                .catch(error =>{
+                    if(error.response.status == 404)
+                    {
+                        this.$snotify.error('Categoria não foi encontrada','404')
+                        this.$router.push({name:'admin.categories'})
+                    }
+                });
+        }
     }
 }
 </script>
