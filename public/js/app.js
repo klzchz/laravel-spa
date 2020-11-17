@@ -38447,7 +38447,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38458,6 +38458,39 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38466,15 +38499,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {
-        this.loadProducts();
-    },
+  created: function created() {
+    this.loadProducts(1);
+  },
 
-    methods: {
-        loadProducts: function loadProducts() {
-            this.$store.dispatch('loadProducts');
-        }
+  computed: {
+    products: function products() {
+      return this.$store.state.products.items;
+    },
+    params: function params() {
+      return {
+        page: this.products.data.current_page
+      };
     }
+  },
+  methods: {
+    loadProducts: function loadProducts(page) {
+      this.$store.dispatch('loadProducts', _extends({}, this.params, { page: page }));
+    }
+  }
 });
 
 /***/ }),
@@ -38485,14 +38528,100 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("h1", [_vm._v("Listagem de Produtos")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-dark" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.products.data.data, function(product) {
+          return _c("tr", { key: product.id }, [
+            _c("td"),
+            _vm._v(" "),
+            _c("td", { domProps: { textContent: _vm._s(product.name) } }),
+            _vm._v(" "),
+            _vm._m(1, true)
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _vm.products.data.last_page > 1
+      ? _c("ul", [
+          _vm.products.data.current_page > 1
+            ? _c("li", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.loadProducts(
+                          _vm.products.data.current_page - 1
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v("\n        Anterior\n      ")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.products.data.current_page < _vm.products.data.last_page
+            ? _c("li", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.loadProducts(
+                          _vm.products.data.current_page + 1
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v("\n        Próxima\n      ")]
+                )
+              ])
+            : _vm._e()
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Listagem de Produtos")])])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Imagem")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nome")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "200" } }, [_vm._v("Ações")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { staticClass: "btn btn-info", attrs: { href: "" } }, [
+        _vm._v("Editar")
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "btn btn-danger", attrs: { href: "" } }, [
+        _vm._v("Apagar")
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -57125,11 +57254,10 @@ module.exports = function(module) {
 var RESOURCE = 'products';
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    loadProducts: function loadProducts(context) {
+    loadProducts: function loadProducts(context, params) {
         context.commit('PRELOADER', true);
-        axios.get('' + __WEBPACK_IMPORTED_MODULE_0__configs_config__["a" /* URL_BASE */] + RESOURCE).then(function (response) {
+        axios.get('' + __WEBPACK_IMPORTED_MODULE_0__configs_config__["a" /* URL_BASE */] + RESOURCE, { params: params }).then(function (response) {
             context.commit('LOAD_PRODUCTS', response.data);
-            console.log(response.data);
         }).catch(function (error) {
             console.log(error);
         }).finally(function () {
